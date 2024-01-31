@@ -30,7 +30,7 @@ class _CabinetDrawerScreenState extends State<CabinetDrawerScreen> {
   }
 
   void loadSections() async {
-    if (widget.cabinet != 'ftscab' && widget.cabinet != 'strcab') {
+    if (widget.cabinet != 'secocab' && widget.cabinet != 'sandvikcab') {
       final sections = await databaseHelper.fetchDrawerSections(widget.drawer);
 
       sections.sort((a, b) {

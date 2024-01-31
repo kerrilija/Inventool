@@ -37,10 +37,10 @@ class _InventoryScreenState extends State<InventoryScreen> {
       "${context.localize('workshopshelves')}": "RADIONA STALAŽA",
       "${context.localize('shelves')}": "STALAŽA",
       "${context.localize('shelves')} 2": "STALAŽA 2",
-      "FTS": "ftscab",
-      "Strojotehnika": "strcab",
-      "Pfeifer": "pfrcab",
-      "Mitsubishi": "mitsucab",
+      "SECO": "secocab",
+      "Sandvik": "sandvikcab",
+      "KENNAMETAL": "kennacab",
+      "Niagara Cutter": "niagaracab",
     };
 
     var firstRowTitles = cabinetMap.keys.toList().sublist(0, 5);
@@ -86,7 +86,7 @@ class _InventoryScreenState extends State<InventoryScreen> {
                   );
                 },
               );
-            } else if (['pfrcab', 'mitsucab'].contains(cabinetMap[title])) {
+            } else if (['kennacab', 'niagaracab'].contains(cabinetMap[title])) {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => CabinetScreen(
                   connection: widget.connection,

@@ -49,7 +49,6 @@ class _AddRemoveScreenState extends State<AddRemoveScreen> {
 
   Future<void> fetchDisposedTools() async {
     final disposedTools = await databaseHelper.fetchDisposed();
-    print(disposedTools);
     setState(() {
       disposed = disposedTools;
     });

@@ -35,7 +35,7 @@ class _DrawerSectionDialogState extends State<DrawerSectionDialog> {
   }
 
   void fetchTools() async {
-    List<String> extcabs = ['pfrcab', 'mitsucab', 'strcab', 'ftscab'];
+    List<String> extcabs = ['kennacab', 'niagaracab', 'sandvikcab', 'secocab'];
     List<Tool> fetchedTools;
     List<Map<String, String>> selectedFilters = extcabs.contains(widget.cabinet)
         ? [

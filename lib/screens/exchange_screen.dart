@@ -61,17 +61,17 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
   String? parseExternalCabinet(Tool result) {
     String? string = "";
 
-    if (result.ftscab != null) {
-      string = 'FTS: ${result.ftscab}';
+    if (result.secocab != null) {
+      string = 'SECO: ${result.secocab}';
     }
-    if (result.strcab != null) {
-      string = 'Strojotehnika: ${result.strcab}';
+    if (result.sandvikcab != null) {
+      string = 'Sandvik: ${result.sandvikcab}';
     }
-    if (result.pfrcab != null) {
-      string = 'Pfeifer: ${result.pfrcab}';
+    if (result.kennacab != null) {
+      string = 'KENNAMETAL: ${result.kennacab}';
     }
-    if (result.mitsucab != null) {
-      string = 'Mitsubishi: ${result.mitsucab}';
+    if (result.niagaracab != null) {
+      string = 'Niagara Cutter: ${result.niagaracab}';
     }
     return string;
   }

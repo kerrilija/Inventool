@@ -25,22 +25,18 @@ create table tool (
     tiptype VARCHAR(10),
     tipsize VARCHAR(10),
     material VARCHAR(20),
-    coating VARCHAR(20),
+    coating VARCHAR(40),
     inserttype VARCHAR(50),
     cabinet VARCHAR(20),
     qty INT,
     issued INT,
     avail INT,
     minqty INT,
-    ftscab VARCHAR(20),
-    strcab VARCHAR(20),
-    pfrcab VARCHAR(20),
-    mitsucab VARCHAR(20),
+    secocab VARCHAR(20),
+    sandvikcab VARCHAR(20),
+    kennacab VARCHAR(20),
+    niagaracab VARCHAR(20),
     extcab INT,
     sourcetable VARCHAR(20),
     subtype VARCHAR(50) 
 );
-
-tipdia i pitch - vratit ce se na NUMERIC, zbog čahura (1-2, 3-4...) i navoja (4-40, 2-56...)
-
-tooltype, steel, stainless, castiron, aluminum, universal, catnum, invnum, grinded, mfr, holdertype, tipdia, shankdia, pitch, neckdia, tslotdp, toollen, splen, worklen, bladecnt, tiptype, tipsize, material, coating, inserttype, cabinet, qty, issued, avail, minqty, ftscab, strcab, pfrcab, mitsucab, extcab

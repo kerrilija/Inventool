@@ -12,6 +12,7 @@ migrate_working_dir/
 .env
 mcam_base/
 .metadata
+analysis_options.yaml
 
 #lib
 /lib/bkp/

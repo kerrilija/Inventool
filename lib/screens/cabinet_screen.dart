@@ -33,7 +33,7 @@ class _CabinetScreenState extends State<CabinetScreen> {
   }
 
   void loadDrawers(String cabinetNumber) async {
-    List<String> extcabs = ['mitsucab', 'pfrcab', 'ftscab', 'strcab'];
+    List<String> extcabs = ['niagaracab', 'kennacab', 'secocab', 'sandvikcab'];
     if (!extcabs.contains(cabinetNumber)) {
       final drawers = await databaseHelper.fetchDrawers(cabinetNumber);
       drawers.sort((a, b) => a.compareTo(b));
@@ -42,7 +42,7 @@ class _CabinetScreenState extends State<CabinetScreen> {
       });
     } else {
       switch (cabinetNumber) {
-        case "ftscab":
+        case "secocab":
           final drawers =
               await databaseHelper.fetchExternalDrawers(cabinetNumber);
           var uniqueDrawerNumbers = drawers
@@ -59,7 +59,7 @@ class _CabinetScreenState extends State<CabinetScreen> {
           });
           break;
 
-        case "strcab":
+        case "sandvikcab":
           final drawers =
               await databaseHelper.fetchExternalDrawers(cabinetNumber);
           var drawerSections = drawers
@@ -74,8 +74,8 @@ class _CabinetScreenState extends State<CabinetScreen> {
           });
           break;
 
-        case "mitsucab":
-        case "pfrcab":
+        case "niagaracab":
+        case "kennacab":
           final drawers =
               await databaseHelper.fetchExternalDrawers(cabinetNumber);
           drawers.sort((a, b) => a.compareTo(b));
@@ -116,16 +116,16 @@ class _CabinetScreenState extends State<CabinetScreen> {
         String drawerId = drawerTitles[j];
         String cardTitle;
         switch (widget.cabinetNumber) {
-          case 'ftscab':
+          case 'secocab':
             cardTitle = '${context.localize('drawer')} $drawerId';
             break;
-          case 'strcab':
+          case 'sandvikcab':
             cardTitle = drawerId.contains('_')
                 ? '${context.localize('drawer')} ${drawerId.split('_')[0]}'
                 : '${context.localize('drawer')} $drawerId';
             break;
-          case 'mitsucab':
-          case 'pfrcab':
+          case 'niagaracab':
+          case 'kennacab':
             cardTitle = '${context.localize('drawer')} $drawerId';
             break;
           default:
@@ -138,8 +138,8 @@ class _CabinetScreenState extends State<CabinetScreen> {
           child: InventoryNavigationCard(
             title: cardTitle,
             onTap: () {
-              if (widget.cabinetNumber == 'pfrcab' ||
-                  widget.cabinetNumber == 'mitsucab') {
+              if (widget.cabinetNumber == 'kennacab' ||
+                  widget.cabinetNumber == 'niagaracab') {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {

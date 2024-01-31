@@ -62,10 +62,10 @@ class _ToolFormState extends State<ToolForm> {
   late TextEditingController issuedController;
   late TextEditingController availController;
   late TextEditingController minqtyController;
-  late TextEditingController ftscabController;
-  late TextEditingController strcabController;
-  late TextEditingController pfrcabController;
-  late TextEditingController mitsucabController;
+  late TextEditingController secocabController;
+  late TextEditingController sandvikcabController;
+  late TextEditingController kennacabController;
+  late TextEditingController niagaracabController;
   late TextEditingController extcabController;
   late TextEditingController subtypeController;
 
@@ -78,23 +78,13 @@ class _ToolFormState extends State<ToolForm> {
   };
 
   Map<String, String> tooltypeToSourcetable = {
-    "Prihvat": "fixture",
-    "Čahura": "fixture",
-    "Glodalo za navoj": "threadmaking",
-    "T-Glodalo": "tool",
-    "Pločica": "tool",
-    "Alat za štosanje": "tool",
-    "Svrdlo": "tool",
-    "Trkač": "tool",
-    "Uvaljivač": "threadmaking",
-    "Upuštač": "tool",
-    "Glodalo": "tool",
-    "Glava": "tool",
-    "Lastin rep": "tool",
-    "Centar punta": "tool",
-    "Ureznik": "threadmaking",
-    "Pila": "tool",
-    "Trivela": "tool",
+    "Drill": "tool",
+    "End Mill": "tool",
+    "Face Mill": "tool",
+    "Sphere Mill": "tool",
+    "T-Slot Mill": "tool",
+    "Thread Tap": "tool",
+    "Chamfer Mill": "tool",
   };
 
   @override
@@ -216,7 +206,7 @@ class _ToolFormState extends State<ToolForm> {
       'Svrdlo',
       'Pila'
     ].contains(toolTypeController.text);
-
+    print('tultajp kontroler: ${toolTypeController.text}');
     return [
       Container(
         child: Column(
@@ -345,13 +335,13 @@ class _ToolFormState extends State<ToolForm> {
               child: Column(
                 children: [
                   buildTextFormField(
-                      ftscabController, '${context.localize('ftscab')}'),
+                      secocabController, '${context.localize('secocab')}'),
+                  buildTextFormField(sandvikcabController,
+                      '${context.localize('sandvikcab')}'),
                   buildTextFormField(
-                      strcabController, '${context.localize('strcab')}'),
-                  buildTextFormField(
-                      pfrcabController, '${context.localize('pfrcab')}'),
-                  buildTextFormField(
-                      mitsucabController, '${context.localize('mitsucab')}'),
+                      kennacabController, '${context.localize('kennacab')}'),
+                  buildTextFormField(niagaracabController,
+                      '${context.localize('niagaracab')}'),
                   buildTextFormField(
                       extcabController, '${context.localize('extcab')}'),
                 ],
@@ -413,11 +403,14 @@ class _ToolFormState extends State<ToolForm> {
         TextEditingController(text: widget.initialTool?.avail?.toString());
     minqtyController =
         TextEditingController(text: widget.initialTool?.minqty?.toString());
-    ftscabController = TextEditingController(text: widget.initialTool?.ftscab);
-    strcabController = TextEditingController(text: widget.initialTool?.strcab);
-    pfrcabController = TextEditingController(text: widget.initialTool?.pfrcab);
-    mitsucabController =
-        TextEditingController(text: widget.initialTool?.mitsucab);
+    secocabController =
+        TextEditingController(text: widget.initialTool?.secocab);
+    sandvikcabController =
+        TextEditingController(text: widget.initialTool?.sandvikcab);
+    kennacabController =
+        TextEditingController(text: widget.initialTool?.kennacab);
+    niagaracabController =
+        TextEditingController(text: widget.initialTool?.niagaracab);
     extcabController =
         TextEditingController(text: widget.initialTool?.extcab?.toString());
     subtypeController =
@@ -682,10 +675,10 @@ class _ToolFormState extends State<ToolForm> {
       issued: int.tryParse(issuedController.text),
       avail: int.tryParse(availController.text),
       minqty: int.tryParse(minqtyController.text),
-      ftscab: getText(ftscabController),
-      strcab: getText(strcabController),
-      pfrcab: getText(pfrcabController),
-      mitsucab: getText(mitsucabController),
+      secocab: getText(secocabController),
+      sandvikcab: getText(sandvikcabController),
+      kennacab: getText(kennacabController),
+      niagaracab: getText(niagaracabController),
       extcab: int.tryParse(extcabController.text),
       sourcetable: selectedSourcetable,
       subtype: getText(subtypeController),

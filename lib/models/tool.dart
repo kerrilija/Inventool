@@ -35,10 +35,10 @@ class Tool {
   final int? issued;
   final int? avail;
   final int? minqty;
-  final String? ftscab;
-  final String? strcab;
-  final String? pfrcab;
-  final String? mitsucab;
+  final String? secocab;
+  final String? sandvikcab;
+  final String? kennacab;
+  final String? niagaracab;
   final int? extcab;
   final String? sourcetable;
   final String? subtype;
@@ -77,10 +77,10 @@ class Tool {
       this.issued,
       this.avail,
       this.minqty,
-      this.ftscab,
-      this.strcab,
-      this.pfrcab,
-      this.mitsucab,
+      this.secocab,
+      this.sandvikcab,
+      this.kennacab,
+      this.niagaracab,
       this.extcab,
       this.sourcetable,
       this.subtype});

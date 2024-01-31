@@ -63,7 +63,7 @@ def clean_csv(csv_path):
 
 def separate_csv(csv_path):
     print("Separating csv files...")
-    newHeader = 'tooltype;steel;stainless;castiron;aluminum;universal;catnum;invnum;unit;grinded;mfr;holdertype;tipdia;shankdia;pitch;neckdia;tslotdp;toollen;splen;worklen;bladecnt;tiptype;tipsize;material;coating;inserttype;cabinet;qty;issued;avail;minqty;ftscab;strcab;pfrcab;mitsucab;extcab;sourcetable'
+    newHeader = 'tooltype;steel;stainless;castiron;aluminum;universal;catnum;invnum;unit;grinded;mfr;holdertype;tipdia;shankdia;pitch;neckdia;tslotdp;toollen;splen;worklen;bladecnt;tiptype;tipsize;material;coating;inserttype;cabinet;qty;issued;avail;minqty;secocab;sandvikcab;kennacab;niagaracab;extcab;sourcetable'
     
     df = pd.read_csv(csv_path, sep=";", header=None, dtype=str, na_values=[], keep_default_na=False)
     df.drop(index=0, inplace=True)

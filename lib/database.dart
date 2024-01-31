@@ -160,10 +160,10 @@ class DatabaseHelper {
           issued: map['issued'] as int?,
           avail: map['avail'] as int?,
           minqty: map['minqty'] as int?,
-          ftscab: map['ftscab'] as String?,
-          strcab: map['strcab'] as String?,
-          pfrcab: map['pfrcab'] as String?,
-          mitsucab: map['mitsucab'] as String?,
+          secocab: map['secocab'] as String?,
+          sandvikcab: map['sandvikcab'] as String?,
+          kennacab: map['kennacab'] as String?,
+          niagaracab: map['niagaracab'] as String?,
           extcab: map['extcab'] as int?,
           sourcetable: map['sourcetable'] as String?,
           subtype: map['subtype'] as String?));
@@ -391,7 +391,6 @@ class DatabaseHelper {
 
     String toolQuery = createQueryString('tool', conditions);
     resultList.addAll(await processQuery(toolQuery));
-    print(toolQuery);
 
     if (!isTipDiameterSearch) {
       String combinedQuery = '''
@@ -565,10 +564,10 @@ class DatabaseHelper {
     addComponent('issued', tool.issued);
     addComponent('avail', tool.avail);
     addComponent('minqty', tool.minqty);
-    addComponent('ftscab', tool.ftscab);
-    addComponent('strcab', tool.strcab);
-    addComponent('pfrcab', tool.pfrcab);
-    addComponent('mitsucab', tool.mitsucab);
+    addComponent('secocab', tool.secocab);
+    addComponent('sandvikcab', tool.sandvikcab);
+    addComponent('kennacab', tool.kennacab);
+    addComponent('niagaracab', tool.niagaracab);
     addComponent('extcab', tool.extcab);
     addComponent('sourcetable', tool.sourcetable);
     addComponent('subtype', tool.subtype);
@@ -619,7 +618,7 @@ class DatabaseHelper {
           substitutionValues: components['substitutionValues']);
       await logQuery(sql, 'Edit', components['substitutionValues']);
     } catch (e) {
-      print('Error updating tool: $e');
+      print('editTool | Error updating tool: $e');
     }
   }
 
@@ -699,17 +698,17 @@ class DatabaseHelper {
     String query;
 
     switch (cabinetName) {
-      case "ftscab":
-        column = "ftscab";
+      case "secocab":
+        column = "secocab";
         break;
-      case "strcab":
-        column = "strcab";
+      case "sandvikcab":
+        column = "sandvikcab";
         break;
-      case "pfrcab":
-        column = "pfrcab";
+      case "kennacab":
+        column = "kennacab";
         break;
-      case "mitsucab":
-        column = "mitsucab";
+      case "niagaracab":
+        column = "niagaracab";
         break;
       default:
         throw Exception("Invalid cabinet name");
