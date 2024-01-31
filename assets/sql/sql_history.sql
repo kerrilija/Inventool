@@ -1,0 +1,6 @@
+CREATE TABLE sql_history (
+    id BIGSERIAL PRIMARY KEY,
+    query TEXT NOT NULL,
+    query_type VARCHAR(50),
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
