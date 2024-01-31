@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tool_crib/screens/home_screen.dart';
-import 'package:tool_crib/locale/locale.dart';
+import 'package:inventool/screens/home_screen.dart';
+import 'package:inventool/locale/locale.dart';
 
 class NotificationDialog extends StatelessWidget {
   final List<NotificationItem> notifications;

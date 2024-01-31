@@ -1,13 +1,13 @@
-import 'package:tool_crib/database.dart';
+import 'package:inventool/database.dart';
 import 'package:flutter/material.dart';
-import 'package:tool_crib/models/tool.dart';
+import 'package:inventool/models/tool.dart';
 import 'package:postgres/postgres.dart';
 import 'package:provider/provider.dart';
-import 'package:tool_crib/screens/exchange_screen.dart';
-import 'package:tool_crib/widgets/tool_table_dialog.dart';
-import 'package:tool_crib/widgets/search_widget.dart';
-import 'package:tool_crib/utils/app_theme.dart';
-import 'package:tool_crib/locale/locale.dart';
+import 'package:inventool/screens/exchange_screen.dart';
+import 'package:inventool/widgets/tool_table_dialog.dart';
+import 'package:inventool/widgets/search_widget.dart';
+import 'package:inventool/utils/app_theme.dart';
+import 'package:inventool/locale/locale.dart';
 
 class MachineCard extends StatefulWidget {
   final PostgreSQLConnection connection;

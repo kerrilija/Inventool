@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tool_crib/utils/colors.dart';
+import 'package:inventool/utils/colors.dart';
 
 class InventoryNavigationCard extends StatefulWidget {
   final String title;

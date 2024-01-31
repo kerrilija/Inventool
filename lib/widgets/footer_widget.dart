@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:tool_crib/locale/locale.dart';
+import 'package:inventool/locale/locale.dart';
 
 class FooterWidget extends StatefulWidget {
   @override

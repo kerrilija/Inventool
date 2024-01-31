@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
-import 'package:tool_crib/locale/locale.dart';
-import 'package:tool_crib/models/tool.dart';
-import 'package:tool_crib/database.dart';
+import 'package:inventool/locale/locale.dart';
+import 'package:inventool/models/tool.dart';
+import 'package:inventool/database.dart';
 import 'package:provider/provider.dart';
-import 'package:tool_crib/widgets/issue_return_dialog.dart';
-import 'package:tool_crib/utils/app_theme.dart';
+import 'package:inventool/widgets/issue_return_dialog.dart';
+import 'package:inventool/utils/app_theme.dart';
 
 class ToolExchangeNotifier with ChangeNotifier {
   Map<int, int> machineNumbers = {};

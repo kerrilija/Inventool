@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 import 'package:provider/provider.dart';
-import 'package:tool_crib/screens/exchange_screen.dart';
-import 'package:tool_crib/widgets/navigation_card.dart';
-import 'package:tool_crib/widgets/machine_card.dart';
+import 'package:inventool/screens/exchange_screen.dart';
+import 'package:inventool/widgets/navigation_card.dart';
+import 'package:inventool/widgets/machine_card.dart';
 import 'search_screen.dart';
 import 'import_screen.dart';
 import 'order_screen.dart';
 import 'addremove_screen.dart';
 import 'report_screen.dart';
-import 'package:tool_crib/widgets/notification_dialog.dart';
-import 'package:tool_crib/models/tool.dart';
-import 'package:tool_crib/database.dart';
-import 'package:tool_crib/widgets/tool_table_dialog.dart';
-import 'package:tool_crib/widgets/search_widget.dart';
-import 'package:tool_crib/screens/inventory_screen.dart';
-import 'package:tool_crib/utils/app_theme.dart';
+import 'package:inventool/widgets/notification_dialog.dart';
+import 'package:inventool/models/tool.dart';
+import 'package:inventool/database.dart';
+import 'package:inventool/widgets/tool_table_dialog.dart';
+import 'package:inventool/widgets/search_widget.dart';
+import 'package:inventool/screens/inventory_screen.dart';
+import 'package:inventool/utils/app_theme.dart';
 import 'package:flag/flag.dart';
-import 'package:tool_crib/providers/locale_provider.dart';
-import 'package:tool_crib/locale/locale.dart';
-import 'package:tool_crib/widgets/footer_widget.dart';
+import 'package:inventool/providers/locale_provider.dart';
+import 'package:inventool/locale/locale.dart';
+import 'package:inventool/widgets/footer_widget.dart';
 
 class NotificationItem {
   final String message;

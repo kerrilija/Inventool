@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:postgres/postgres.dart';
-import 'package:tool_crib/utils/app_theme.dart';
-import 'package:tool_crib/widgets/toast_util.dart';
-import 'package:tool_crib/main.dart';
-import 'package:tool_crib/locale/locale.dart';
+import 'package:inventool/utils/app_theme.dart';
+import 'package:inventool/widgets/toast_util.dart';
+import 'package:inventool/main.dart';
+import 'package:inventool/locale/locale.dart';
 import 'package:path_provider/path_provider.dart';
 
 enum TableType { Tool, ThreadMaking, Fixture }

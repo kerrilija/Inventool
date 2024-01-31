@@ -1,5 +1,5 @@
 import 'package:postgres/postgres.dart';
-import 'package:tool_crib/models/sql_history.dart';
+import 'package:inventool/models/sql_history.dart';
 import 'models/tool.dart';
 
 class DatabaseHelper {

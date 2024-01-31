@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:tool_crib/models/tool.dart';
+import 'package:inventool/models/tool.dart';
 import 'package:postgres/postgres.dart';
-import 'package:tool_crib/database.dart';
-import 'package:tool_crib/widgets/insert_tool_dialog.dart';
-import 'package:tool_crib/widgets/toast_util.dart';
-import 'package:tool_crib/main.dart';
+import 'package:inventool/database.dart';
+import 'package:inventool/widgets/insert_tool_dialog.dart';
+import 'package:inventool/widgets/toast_util.dart';
+import 'package:inventool/main.dart';
 import 'dart:math';
-import 'package:tool_crib/screens/exchange_screen.dart';
+import 'package:inventool/screens/exchange_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:tool_crib/utils/app_theme.dart';
-import 'package:tool_crib/locale/locale.dart';
+import 'package:inventool/utils/app_theme.dart';
+import 'package:inventool/locale/locale.dart';
 
 class ToolForm extends StatefulWidget {
   final Tool? initialTool;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tool_crib/locale/locale.dart';
+import 'package:inventool/locale/locale.dart';
 
 class OrderScreen extends StatefulWidget {
   @override

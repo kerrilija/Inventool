@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
-import 'package:tool_crib/database.dart';
-import 'package:tool_crib/models/sql_history.dart';
-import 'package:tool_crib/models/tool.dart';
+import 'package:inventool/database.dart';
+import 'package:inventool/models/sql_history.dart';
+import 'package:inventool/models/tool.dart';
 import 'package:intl/intl.dart';
-import 'package:tool_crib/utils/app_theme.dart';
-import 'package:tool_crib/locale/locale.dart';
+import 'package:inventool/utils/app_theme.dart';
+import 'package:inventool/locale/locale.dart';
 
 class QueryParserUtil {
   final DatabaseHelper databaseHelper;

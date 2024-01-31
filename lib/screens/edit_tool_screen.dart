@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tool_crib/models/tool.dart';
+import 'package:inventool/models/tool.dart';
 import 'package:postgres/postgres.dart';
-import 'package:tool_crib/widgets/search_widget.dart';
-import 'package:tool_crib/widgets/tool_form.dart';
+import 'package:inventool/widgets/search_widget.dart';
+import 'package:inventool/widgets/tool_form.dart';
 
 class EditToolScreen extends StatefulWidget {
   final PostgreSQLConnection connection;

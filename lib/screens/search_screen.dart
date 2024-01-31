@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
-import 'package:tool_crib/widgets/search_widget.dart';
-import 'package:tool_crib/models/tool.dart';
-import 'package:tool_crib/database.dart';
-import 'package:tool_crib/locale/locale.dart';
+import 'package:inventool/widgets/search_widget.dart';
+import 'package:inventool/models/tool.dart';
+import 'package:inventool/database.dart';
+import 'package:inventool/locale/locale.dart';
 
 class SearchScreen extends StatefulWidget {
   final PostgreSQLConnection connection;

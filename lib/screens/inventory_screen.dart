@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
-import 'package:tool_crib/database.dart';
-import 'package:tool_crib/widgets/navigation_card.dart';
-import 'package:tool_crib/screens/cabinet_screen.dart';
-import 'package:tool_crib/widgets/drawer_section_dialog.dart';
-import 'package:tool_crib/locale/locale.dart';
+import 'package:inventool/database.dart';
+import 'package:inventool/widgets/navigation_card.dart';
+import 'package:inventool/screens/cabinet_screen.dart';
+import 'package:inventool/widgets/drawer_section_dialog.dart';
+import 'package:inventool/locale/locale.dart';
 
 class InventoryScreen extends StatefulWidget {
   final PostgreSQLConnection connection;

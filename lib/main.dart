@@ -6,10 +6,10 @@ import 'screens/home_screen.dart';
 import 'screens/search_screen.dart';
 import 'screens/addremove_screen.dart';
 import 'screens/exchange_screen.dart';
-import 'package:tool_crib/database.dart';
-import 'package:tool_crib/utils/app_theme.dart';
-import 'package:tool_crib/providers/locale_provider.dart';
-import 'package:tool_crib/locale/locale.dart';
+import 'package:inventool/database.dart';
+import 'package:inventool/utils/app_theme.dart';
+import 'package:inventool/providers/locale_provider.dart';
+import 'package:inventool/locale/locale.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
