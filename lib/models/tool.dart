@@ -11,23 +11,23 @@ class Tool {
   final bool? universal;
   final String? catnum;
   final String invnum;
-  final String? unit; // da radiounit
-  final String? grinded; // da
+  final String? unit;
+  final String? grinded;
   final String? mfr;
   final String? holdertype;
   final String? tipdiamm;
   final String? tipdiainch;
   final num? shankdia;
-  final String? pitch; //dropdown
-  final num? neckdia; // da
-  final num? tslotdp; // da
-  final num? toollen; // da
-  final num? splen; // da
-  final num? worklen; // da
-  final int? bladecnt; // da
-  final String? tiptype; // da
-  final String? tipsize; // da
-  final String? material; // da
+  final String? pitch;
+  final num? neckdia;
+  final num? tslotdp;
+  final num? toollen;
+  final num? splen;
+  final num? worklen;
+  final int? bladecnt;
+  final String? tiptype;
+  final String? tipsize;
+  final String? material;
   final String? coating;
   final String? inserttype;
   final String? cabinet;

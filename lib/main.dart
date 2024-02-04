@@ -100,15 +100,15 @@ class _MyAppState extends State<MyApp> {
                       themeMode: themeProvider.themeMode,
                       navigatorKey: MyApp.navigatorKey,
                       locale: localeProvider.currentLocale,
-                      localizationsDelegates: [
-                        const MyLocalizationsDelegate(),
+                      localizationsDelegates: const [
+                        MyLocalizationsDelegate(),
                         GlobalMaterialLocalizations.delegate,
                         GlobalWidgetsLocalizations.delegate,
                         GlobalCupertinoLocalizations.delegate,
                       ],
-                      supportedLocales: [
-                        const Locale('en', ''),
-                        const Locale('hr', ''),
+                      supportedLocales: const [
+                        Locale('en', ''),
+                        Locale('hr', ''),
                       ],
                       builder: (context, child) => Overlay(
                         initialEntries: [

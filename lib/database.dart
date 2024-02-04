@@ -578,7 +578,7 @@ class DatabaseHelper {
     };
   }
 
-  void insertTool(Tool tool) async {
+  Future<String> insertTool(Tool tool) async {
     var components = generateSqlComponents(tool);
     String sql =
         'INSERT INTO ${tool.sourcetable} (${components['substitutionValues'].keys.join(', ')}) VALUES (${components['substitutionValues'].keys.map((k) => '@$k').join(', ')})';
@@ -587,8 +587,10 @@ class DatabaseHelper {
       await connection.query(sql,
           substitutionValues: components['substitutionValues']);
       await logQuery(sql, 'Insert', components['substitutionValues']);
+      return "Success";
     } catch (e) {
       print('insertTool | Error processing tool insertion: $e');
+      return "Error processing tool insertion: $e";
     }
   }
 
@@ -607,7 +609,7 @@ class DatabaseHelper {
     }
   }
 
-  void editTool(Tool tool) async {
+  Future<String> editTool(Tool tool) async {
     var components = generateSqlComponents(tool);
     String sql =
         'UPDATE ${tool.sourcetable} SET ${components['setComponents']} WHERE id = @id';
@@ -617,8 +619,10 @@ class DatabaseHelper {
       await connection.query(sql,
           substitutionValues: components['substitutionValues']);
       await logQuery(sql, 'Edit', components['substitutionValues']);
+      return "Success";
     } catch (e) {
-      print('editTool | Error updating tool: $e');
+      print('Error updating tool: $e');
+      return "Error updating tool: $e";
     }
   }
 

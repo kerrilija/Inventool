@@ -42,7 +42,7 @@
   "secocab":"SECO ormar",
   "sandvikcab":"Sandvik ormar",
   "kennacab":"KENNAMETAL ormar",
-  "niagaracab":"Niagara Cutter ormar",
+  "niagaracab":"Niagara ormar",
   "inserttype":"Tip pločice",
   "holdertype":"Tip držača",
   "steel":"Čelik",
@@ -86,6 +86,7 @@
   "section":"Odjeljak",
   "updatequantities":"Osvježi količinu",
   "lowqtytools":"Alati niske količine",
+  "warning":"UPOZORENJE",
 
   "manualsearchdialogtitle":"Ručna pretraga i postavke",
   "manualsearchrangetolerance":"Zadano područje tolerancije (%)",
@@ -134,6 +135,7 @@
   "toolformconfirmexit":"Potvrdi izlaz",
   "toolformleaveprompt":"Sigurno želite napustiti ekran? Sve promjene biti će obrisane.",
   "toolformmaterialscaption":"Materijali:",
+  "toolformwarning":"Vrsta alata nije odgovarajuća!",
 
   "inserttooldialogtitle":"Unesi novi alat",
   "inserttooldialogprompt":"Jeste li sigurni da želite unijeti ovaj alat?",
@@ -170,5 +172,7 @@
   "toasteditedsuccessfully":"Alat uspješno izmjenjen!",
   "toastinsertedsuccessfully":"Alati uspješno unesen!",
   "toastimportedsuccessfully":"Tablica uspješno unesena!",
-  "toastquantitiesupdated":"Količine izmjenjene!"
+  "toastquantitiesupdated":"Količine izmjenjene!",
+  "toastinsertfailed":"Neuspješan unos alata",
+  "toasteditfailed":"Neuspješna izmjena alata!"
 }

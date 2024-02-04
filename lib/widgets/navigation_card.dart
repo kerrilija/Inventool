@@ -19,7 +19,6 @@ class _NavigationCardState extends State<NavigationCard> {
   @override
   void initState() {
     super.initState();
-    // Initial default values
     cardBackgroundColor = AppColors.blueGrey900;
     hoverColor = AppColors.blueGrey700;
   }

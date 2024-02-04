@@ -42,7 +42,7 @@
     "secocab":"SECO Cabinet",
     "sandvikcab":"Sandvik Cabinet",
     "kennacab":"KENNAMETAL Cabinet",
-    "niagaracab":"Niagara Cutter Cabinet",
+    "niagaracab":"Niagara Cabinet",
     "inserttype":"Insert Type",
     "holdertype":"Holder Type",
     "steel":"Steel",
@@ -86,6 +86,7 @@
     "section":"Section",
     "updatequantities":"Update Quantities",
     "lowqtytools":"Low Quantity Tools",
+    "warning":"WARNING",
 
     "manualsearchdialogtitle":"Manual search & settings",
     "manualsearchrangetolerance":"Default Range Tolerance (%)",
@@ -134,6 +135,7 @@
     "toolformconfirmexit":"Confirm Exit",
     "toolformleaveprompt":"Are you sure you want to leave this screen? All unsaved changes will be lost.",
     "toolformmaterialscaption":"Materials:",
+    "toolformwarning":"Tool type invalid!",
 
     "inserttooldialogtitle":"Insert New Tool",
     "inserttooldialogprompt":"Are you sure you want to Insert this new tool?",
@@ -173,5 +175,7 @@
     "toasteditedsuccessfully":"Tool edited successfully!",
     "toastinsertedsuccessfully":"Tool inserted successfully!",
     "toastimportedsuccessfully":"File imported successfully",
-    "toastquantitiesupdated":"Quantities updated!"
+    "toastquantitiesupdated":"Quantities updated!",
+    "toastinsertfailed":"Tool insertion failed!",
+    "toasteditfailed":"Tool editing failed!"
   }

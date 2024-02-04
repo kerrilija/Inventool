@@ -5,10 +5,13 @@ import 'package:inventool/widgets/toast_util.dart';
 import 'package:inventool/main.dart';
 import 'package:inventool/utils/app_theme.dart';
 import 'package:inventool/locale/locale.dart';
+import 'package:provider/provider.dart';
+import 'package:inventool/screens/exchange_screen.dart';
 
 class InsertToolDialog extends StatelessWidget {
   final Tool newTool;
   final DatabaseHelper databaseHelper;
+  final VoidCallback? onInsertConfirmed;
 
   Widget boldText(BuildContext context, String label, String value) {
     return RichText(
@@ -25,10 +28,10 @@ class InsertToolDialog extends StatelessWidget {
     );
   }
 
-  InsertToolDialog({
-    required this.newTool,
-    required this.databaseHelper,
-  });
+  InsertToolDialog(
+      {required this.newTool,
+      required this.databaseHelper,
+      this.onInsertConfirmed});
 
   @override
   Widget build(BuildContext context) {
@@ -129,12 +132,23 @@ class InsertToolDialog extends StatelessWidget {
       actions: <Widget>[
         ElevatedButton(
           onPressed: () {
-            databaseHelper.insertTool(newTool);
-            Navigator.of(context).pop();
-            toast.showToast(
-              context.localize('toastinsertedsuccessfully'),
-              bgColor: AppTheme.toastColor(context),
-            );
+            databaseHelper.insertTool(newTool).then((result) {
+              Navigator.of(context).pop();
+              if (result == "Success") {
+                toast.showToast(
+                  context.localize('toastinsertedsuccessfully'),
+                  bgColor: AppTheme.toastColor(context),
+                );
+                onInsertConfirmed!();
+              } else {
+                toast.showToast(
+                  context.localize('toastinsertfailed'),
+                  bgColor: Colors.red,
+                );
+              }
+              Provider.of<ToolExchangeNotifier>(context, listen: false)
+                  .toolInsertedOrEdited();
+            });
           },
           child: Text(context.localize('buttonyes')),
         ),

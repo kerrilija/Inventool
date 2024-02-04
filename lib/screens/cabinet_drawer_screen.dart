@@ -30,7 +30,10 @@ class _CabinetDrawerScreenState extends State<CabinetDrawerScreen> {
   }
 
   void loadSections() async {
-    if (widget.cabinet != 'secocab' && widget.cabinet != 'sandvikcab') {
+    if (widget.cabinet != 'secocab' &&
+        widget.cabinet != 'sandvikcab' &&
+        widget.cabinet != 'niagaracab' &&
+        widget.cabinet != 'kennacab') {
       final sections = await databaseHelper.fetchDrawerSections(widget.drawer);
 
       sections.sort((a, b) {
@@ -92,7 +95,9 @@ class _CabinetDrawerScreenState extends State<CabinetDrawerScreen> {
       ),
       body: sectionTitles.isEmpty
           ? Center(child: CircularProgressIndicator())
-          : buildSectionGrid(),
+          : Center(
+              child: SingleChildScrollView(child: buildSectionGrid()),
+            ),
     );
   }
 

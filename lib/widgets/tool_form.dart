@@ -10,6 +10,7 @@ import 'package:inventool/screens/exchange_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:inventool/utils/app_theme.dart';
 import 'package:inventool/locale/locale.dart';
+import 'package:inventool/utils/form_validation.dart';
 
 class ToolForm extends StatefulWidget {
   final Tool? initialTool;
@@ -22,6 +23,9 @@ class ToolForm extends StatefulWidget {
 }
 
 class _ToolFormState extends State<ToolForm> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  static bool _changeConfirmed = false;
   int? toolId;
   String? sourceTable;
   String? subtype;
@@ -78,13 +82,23 @@ class _ToolFormState extends State<ToolForm> {
   };
 
   Map<String, String> tooltypeToSourcetable = {
-    "Drill": "tool",
-    "End Mill": "tool",
-    "Face Mill": "tool",
-    "Sphere Mill": "tool",
-    "T-Slot Mill": "tool",
-    "Thread Tap": "tool",
-    "Chamfer Mill": "tool",
+    "Prihvat": "fixture",
+    "Čahura": "fixture",
+    "Glodalo za navoj": "threadmaking",
+    "T-Glodalo": "tool",
+    "Pločica": "tool",
+    "Alat za štosanje": "tool",
+    "Svrdlo": "tool",
+    "Trkač": "tool",
+    "Uvaljivač": "threadmaking",
+    "Upuštač": "tool",
+    "Glodalo": "tool",
+    "Glava": "tool",
+    "Lastin rep": "tool",
+    "Centar punta": "tool",
+    "Ureznik": "threadmaking",
+    "Pila": "tool",
+    "Trivela": "tool",
   };
 
   @override
@@ -206,7 +220,7 @@ class _ToolFormState extends State<ToolForm> {
       'Svrdlo',
       'Pila'
     ].contains(toolTypeController.text);
-    print('tultajp kontroler: ${toolTypeController.text}');
+
     return [
       Container(
         child: Column(
@@ -216,34 +230,40 @@ class _ToolFormState extends State<ToolForm> {
                 Expanded(
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(minHeight: 576),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        buildTextFormField(
-                            tipdiaController, '${context.localize('tipdia')}'),
-                        buildTextFormField(
-                            splenController, '${context.localize('splen')}'),
-                        buildTextFormField(worklenController,
-                            '${context.localize('worklen')}'),
-                        buildAutoCompleteFormField(grindedController,
-                            '${context.localize('grinded')}'),
-                        buildAutoCompleteFormField(tiptypeController,
-                            '${context.localize('tiptype')}'),
-                        if (showTipSize)
-                          buildTextFormField(tipsizeController,
-                              '${context.localize('tipsize')}'),
-                        if (showPitch)
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
                           buildTextFormField(
-                              pitchController, '${context.localize('pitch')}'),
-                        Row(
-                          children: [
-                            Text(
-                                ' ${context.localize('toolformunitsystem')}: '),
-                            buildUnitRadio(),
-                          ],
-                        )
-                      ],
+                              tipdiaController, '${context.localize('tipdia')}',
+                              validator: validateNumericField),
+                          buildTextFormField(
+                              splenController, '${context.localize('splen')}',
+                              validator: validateNumericField),
+                          buildTextFormField(worklenController,
+                              '${context.localize('worklen')}',
+                              validator: validateNumericField),
+                          buildAutoCompleteFormField(grindedController,
+                              '${context.localize('grinded')}'),
+                          buildAutoCompleteFormField(tiptypeController,
+                              '${context.localize('tiptype')}'),
+                          if (showTipSize)
+                            buildTextFormField(tipsizeController,
+                                '${context.localize('tipsize')}'),
+                          if (showPitch)
+                            buildTextFormField(pitchController,
+                                '${context.localize('pitch')}'),
+                          Row(
+                            children: [
+                              Text(
+                                  ' ${context.localize('toolformunitsystem')}: '),
+                              buildUnitRadio(),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -254,16 +274,21 @@ class _ToolFormState extends State<ToolForm> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         buildTextFormField(shankdiaController,
-                            '${context.localize('shankdia')}'),
-                        buildTextFormField(neckdiaController,
-                            '${context.localize('neckdia')}'),
+                            '${context.localize('shankdia')}',
+                            validator: validateNumericField),
+                        buildTextFormField(
+                            neckdiaController, '${context.localize('neckdia')}',
+                            validator: validateNumericField),
                         if (showTSlotDp)
                           buildTextFormField(tslotdpController,
-                              '${context.localize('tslotdp')}'),
-                        buildTextFormField(toollenController,
-                            '${context.localize('toollen')}'),
+                              '${context.localize('tslotdp')}',
+                              validator: validateNumericField),
+                        buildTextFormField(
+                            toollenController, '${context.localize('toollen')}',
+                            validator: validateNumericField),
                         buildTextFormField(bladecntController,
-                            '${context.localize('bladecnt')}'),
+                            '${context.localize('bladecnt')}',
+                            validator: validateIntegerField),
                         buildAutoCompleteFormField(materialController,
                             '${context.localize('material')}'),
                         buildAutoCompleteFormField(coatingController,
@@ -321,13 +346,17 @@ class _ToolFormState extends State<ToolForm> {
                   buildTextFormField(
                       cabinetController, '${context.localize('cabinet')}'),
                   buildTextFormField(
-                      qtyController, '${context.localize('qty')}'),
+                      qtyController, '${context.localize('qty')}',
+                      validator: validateIntegerField),
                   buildTextFormField(
-                      issuedController, '${context.localize('issued')}'),
+                      issuedController, '${context.localize('issued')}',
+                      validator: validateIntegerField),
                   buildTextFormField(
-                      availController, '${context.localize('avail')}'),
+                      availController, '${context.localize('avail')}',
+                      validator: validateIntegerField),
                   buildTextFormField(
-                      minqtyController, '${context.localize('minqty')}'),
+                      minqtyController, '${context.localize('minqty')}',
+                      validator: validateIntegerField),
                 ],
               ),
             ),
@@ -343,7 +372,8 @@ class _ToolFormState extends State<ToolForm> {
                   buildTextFormField(niagaracabController,
                       '${context.localize('niagaracab')}'),
                   buildTextFormField(
-                      extcabController, '${context.localize('extcab')}'),
+                      extcabController, '${context.localize('extcab')}',
+                      validator: validateIntegerField),
                 ],
               ),
             ),
@@ -453,14 +483,12 @@ class _ToolFormState extends State<ToolForm> {
       child: Autocomplete<String>(
         optionsBuilder: (TextEditingValue textEditingValue) {
           final pattern = textEditingValue.text.toLowerCase();
-
           final filteredSuggestions = pattern.isEmpty
-              ? suggestions // Show all suggestions when the pattern is empty
+              ? suggestions
               : suggestions
                   .where((suggestion) =>
                       suggestion.toLowerCase().contains(pattern))
                   .toList();
-
           return Iterable<String>.generate(filteredSuggestions.length,
               (index) => filteredSuggestions[index]);
         },
@@ -474,7 +502,6 @@ class _ToolFormState extends State<ToolForm> {
           if (fieldController.text.isEmpty && controller.text.isNotEmpty) {
             fieldController.text = controller.text;
           }
-
           return TextField(
             controller: fieldController,
             focusNode: fieldFocusNode,
@@ -484,9 +511,12 @@ class _ToolFormState extends State<ToolForm> {
                 borderRadius: BorderRadius.circular(8.0),
               ),
             ),
-            onSubmitted: (_) {
-              onFieldSubmitted();
+            onChanged: (text) {
+              if (text != controller.text) {
+                controller.text = '';
+              }
             },
+            onSubmitted: (_) => {onFieldSubmitted()},
           );
         },
         optionsViewBuilder: (BuildContext context,
@@ -504,7 +534,6 @@ class _ToolFormState extends State<ToolForm> {
                   itemCount: options.length,
                   itemBuilder: (BuildContext context, int index) {
                     final option = options.elementAt(index);
-
                     return ListTile(
                       tileColor: index == highlightedIndex
                           ? Theme.of(context).focusColor.withOpacity(0.1)
@@ -546,31 +575,31 @@ class _ToolFormState extends State<ToolForm> {
   }
 
   Widget buildTextFormField(TextEditingController controller, String labelText,
-      {bool isRequired = false}) {
+      {bool isRequired = false, String? Function(String?)? validator}) {
     return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: TextFormField(
-        controller: controller,
-        decoration: InputDecoration(
-          labelText: labelText,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          suffix: isRequired
-              ? const Text(
-                  '*',
-                  style: TextStyle(color: Colors.red),
-                )
-              : null,
-        ),
-        validator: (value) {
-          if (isRequired && (value == null || value.isEmpty)) {
-            return '${context.localize('toolformfieldrequired')}';
-          }
-          return null;
-        },
-      ),
-    );
+        padding: const EdgeInsets.all(4.0),
+        child: TextFormField(
+            controller: controller,
+            decoration: InputDecoration(
+              labelText: labelText,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              suffix: isRequired
+                  ? const Text(
+                      '*',
+                      style: TextStyle(color: Colors.red),
+                    )
+                  : null,
+            ),
+            validator: validator ??
+                (value) {
+                  if (isRequired && (value == null || value.isEmpty)) {
+                    return '${context.localize('toolformfieldrequired')}';
+                  }
+                  return null;
+                },
+            autovalidateMode: AutovalidateMode.onUserInteraction));
   }
 
   Widget buildUnitRadio() {
@@ -687,6 +716,7 @@ class _ToolFormState extends State<ToolForm> {
 
   @override
   Widget build(BuildContext context) {
+    _changeConfirmed = false;
     final toast = ToastUtil(context, MyApp.navigatorKey);
     return SingleChildScrollView(
       child: Padding(
@@ -716,22 +746,58 @@ class _ToolFormState extends State<ToolForm> {
               child: ElevatedButton(
                 onPressed: () {
                   Tool newTool = _createToolFromFormData();
-
-                  if (widget.initialTool == null) {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) => InsertToolDialog(
-                        newTool: newTool,
-                        databaseHelper: databaseHelper,
-                      ),
-                    );
+                  if (validateInvNum(invNumController.text) == null &&
+                      validateToolType(newTool.tooltype) == null) {
+                    if (widget.initialTool == null) {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) => InsertToolDialog(
+                            newTool: newTool,
+                            databaseHelper: databaseHelper,
+                            onInsertConfirmed: () {
+                              _changeConfirmed = true;
+                            }),
+                      );
+                    } else {
+                      _changeConfirmed = true;
+                      databaseHelper.editTool(newTool).then((result) {
+                        if (result == "Success") {
+                          toast.showToast(
+                            context.localize('toasteditedsuccessfully'),
+                            bgColor: AppTheme.toastColor(context),
+                          );
+                          Provider.of<ToolExchangeNotifier>(context,
+                                  listen: false)
+                              .toolInsertedOrEdited();
+                        } else {
+                          toast.showToast(
+                            context.localize('toasteditfailed'),
+                            bgColor: Colors.red,
+                          );
+                        }
+                      });
+                    }
                   } else {
-                    databaseHelper.editTool(newTool);
-                    toast.showToast(
-                        '${context.localize('toasteditedsuccessfully')}',
-                        bgColor: AppTheme.toastColor(context));
-                    Provider.of<ToolExchangeNotifier>(context, listen: false)
-                        .toolUpdated();
+                    if (validateToolType(newTool.tooltype) == null) {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                                title: Text(context.localize('warning')),
+                                content:
+                                    Text(context.localize('toolformwarning')),
+                                actions: <Widget>[
+                                  ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child:
+                                          Text(context.localize('buttonclose')))
+                                ]);
+                          });
+                    } else {
+                      // finish this
+                    }
                   }
                 },
                 child: Text(
@@ -772,6 +838,9 @@ class ToolFormScreen extends StatelessWidget {
   }
 
   Future<bool> _onBackPressed(BuildContext context) async {
+    if (_ToolFormState._changeConfirmed) {
+      return true;
+    }
     return await showDialog<bool>(
           context: context,
           builder: (context) => AlertDialog(

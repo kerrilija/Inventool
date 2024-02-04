@@ -10,6 +10,7 @@ import 'package:inventool/utils/app_theme.dart';
 class ToolExchangeNotifier with ChangeNotifier {
   Map<int, int> machineNumbers = {};
   Map<int, bool> issuedCheckStates = {};
+  bool _toolChanged = false;
 
   void updateMachineNumber(int exchangeId, int machineNumber) {
     machineNumbers[exchangeId] = machineNumber;
@@ -22,6 +23,17 @@ class ToolExchangeNotifier with ChangeNotifier {
 
   void toolUpdated() {
     notifyListeners();
+  }
+
+  void toolInsertedOrEdited() {
+    _toolChanged = true;
+    notifyListeners();
+  }
+
+  bool get toolChanged => _toolChanged;
+
+  void resetToolChangedFlag() {
+    _toolChanged = false;
   }
 
   void updateIssuedCheckState(int exchangeId, bool newState) {

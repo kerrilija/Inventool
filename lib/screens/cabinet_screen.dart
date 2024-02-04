@@ -45,17 +45,15 @@ class _CabinetScreenState extends State<CabinetScreen> {
         case "secocab":
           final drawers =
               await databaseHelper.fetchExternalDrawers(cabinetNumber);
-          var uniqueDrawerNumbers = drawers
-              .map((drawer) => drawer.split('_').firstWhere(
-                  (element) => element.isNotEmpty,
-                  orElse: () => ""))
-              .where((element) => element.isNotEmpty)
+          var drawerSections = drawers
+              .map((drawer) => drawer.contains('_') ? drawer.split('_')[0] : "")
+              .where((element) =>
+                  element.isNotEmpty && int.tryParse(element) != null)
               .toSet()
               .toList();
-          uniqueDrawerNumbers
-              .sort((a, b) => int.parse(a).compareTo(int.parse(b)));
+          drawerSections.sort((a, b) => int.parse(a).compareTo(int.parse(b)));
           setState(() {
-            drawerTitles = uniqueDrawerNumbers;
+            drawerTitles = drawerSections;
           });
           break;
 
@@ -75,12 +73,31 @@ class _CabinetScreenState extends State<CabinetScreen> {
           break;
 
         case "niagaracab":
+          final drawers =
+              await databaseHelper.fetchExternalDrawers(cabinetNumber);
+          var drawerSections = drawers
+              .map((drawer) => drawer.contains('_') ? drawer.split('_')[0] : "")
+              .where((element) =>
+                  element.isNotEmpty && int.tryParse(element) != null)
+              .toSet()
+              .toList();
+          drawerSections.sort((a, b) => int.parse(a).compareTo(int.parse(b)));
+          setState(() {
+            drawerTitles = drawerSections;
+          });
+          break;
         case "kennacab":
           final drawers =
               await databaseHelper.fetchExternalDrawers(cabinetNumber);
-          drawers.sort((a, b) => a.compareTo(b));
+          var drawerSections = drawers
+              .map((drawer) => drawer.contains('_') ? drawer.split('_')[0] : "")
+              .where((element) =>
+                  element.isNotEmpty && int.tryParse(element) != null)
+              .toSet()
+              .toList();
+          drawerSections.sort((a, b) => int.parse(a).compareTo(int.parse(b)));
           setState(() {
-            drawerTitles = drawers;
+            drawerTitles = drawerSections;
           });
           break;
 
@@ -98,13 +115,16 @@ class _CabinetScreenState extends State<CabinetScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('${context.localize('cabinet')} ${widget.cabinet}'),
-      ),
-      body: drawerTitles.isEmpty
-          ? Center(child: CircularProgressIndicator())
-          : buildDrawerGrid(),
-    );
+        appBar: AppBar(
+          title: Text('${context.localize('cabinet')} ${widget.cabinet}'),
+        ),
+        body: drawerTitles.isEmpty
+            ? Center(child: CircularProgressIndicator())
+            : Center(
+                child: SingleChildScrollView(
+                  child: buildDrawerGrid(),
+                ),
+              ));
   }
 
   Widget buildDrawerGrid() {
@@ -136,21 +156,8 @@ class _CabinetScreenState extends State<CabinetScreen> {
         }
         rowCards.add(Flexible(
           child: InventoryNavigationCard(
-            title: cardTitle,
-            onTap: () {
-              if (widget.cabinetNumber == 'kennacab' ||
-                  widget.cabinetNumber == 'niagaracab') {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return DrawerSectionDialog(
-                      connection: widget.connection,
-                      section: drawerId,
-                      cabinet: widget.cabinetNumber,
-                    );
-                  },
-                );
-              } else {
+              title: cardTitle,
+              onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => CabinetDrawerScreen(
                     connection: widget.connection,
@@ -158,9 +165,7 @@ class _CabinetScreenState extends State<CabinetScreen> {
                     cabinet: widget.cabinetNumber,
                   ),
                 ));
-              }
-            },
-          ),
+              }),
         ));
       }
       rows.add(Row(

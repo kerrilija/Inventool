@@ -9,6 +9,7 @@ import 'package:inventool/main.dart';
 import 'package:inventool/widgets/tool_form.dart';
 import 'package:inventool/utils/app_theme.dart';
 import 'package:inventool/locale/locale.dart';
+import 'package:inventool/screens/exchange_screen.dart';
 
 enum ToolAction { Issue, Return, Order, Dispose, Edit }
 
@@ -25,6 +26,7 @@ class ToolSearchWidget extends StatefulWidget {
 }
 
 class _ToolSearchWidgetState extends State<ToolSearchWidget> {
+  bool _isToolUpdated = false;
   late DatabaseHelper databaseHelper;
   bool isTooltypeSelected = false;
   TextEditingController textEditingController = TextEditingController();
@@ -47,6 +49,13 @@ class _ToolSearchWidgetState extends State<ToolSearchWidget> {
   String? manualRangeLower;
   String? manualRangeUpper;
   String manualRangeUnit = 'mm';
+
+  void _toolChanged() {
+    if (_isToolUpdated) {
+      performSearch();
+      _isToolUpdated = false;
+    }
+  }
 
   void updateTooltypeSelectedState() {
     final anyTooltypeSelected =
@@ -395,7 +404,6 @@ class _ToolSearchWidgetState extends State<ToolSearchWidget> {
     String? alias;
     String? filterValue;
     final toast = ToastUtil(context, MyApp.navigatorKey);
-    final theme = Theme.of(context);
 
     return Scaffold(
       body: Column(
@@ -779,164 +787,174 @@ class _ToolSearchWidgetState extends State<ToolSearchWidget> {
               );
             },
           ),
-          Expanded(
-            child: Consumer<SearchProvider>(
-                builder: (context, searchProvider, child) {
-              return ListView.builder(
-                itemCount: searchProvider.searchResults?.length ?? 0,
-                itemBuilder: (context, index) {
-                  final result = searchProvider.searchResults![index];
-                  String title;
-                  if (result.subtype == 'Glodalo za skidanje srha') {
-                    title =
-                        '${result.subtype} Ø ${result.parseTipdia()} ${result.tiptype}';
-                  } else if (result.tooltype
-                          .toLowerCase()
-                          .startsWith('t-glodalo') &&
-                      result.tslotdp != null) {
-                    title =
-                        '${result.subtype} Ø ${result.parseTipdia()} x ${result.tslotdp}';
-                  } else if (result.tooltype == 'Ureznik') {
-                    title =
-                        '${result.subtype} ${result.parseTipdia()} x ${result.pitch}';
-                  } else {
-                    title =
-                        '${result.subtype} Ø ${result.parseTipdia()}${result.unit == 'mm' ? ' mm' : '"'}';
-                  }
-                  return Card(
-                    elevation: 4.0,
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 4.0, horizontal: 8.0),
-                    child: ExpansionTile(
-                      title: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    '${result.mfr ?? '${context.localize('unknownmfr')}'} ',
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      height: 1.5,
-                                    ),
-                                  ),
-                                  Text(
-                                    result.invnum,
-                                    style: TextStyle(
-                                      color: AppTheme.invNumText(context),
-                                      height: 1.5,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                title,
-                                style: const TextStyle(
-                                  fontSize: 16.0,
-                                  height: 1.5,
-                                ),
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    '${result.cabinet} ',
-                                    style: TextStyle(
-                                      fontSize: 16.0,
-                                      height: 1.5,
-                                      color: AppTheme.toolLocationText(context),
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    '(${context.localize('avail')} ${result.avail}, ${context.localize('issued')} ${result.issued})',
-                                    style: const TextStyle(
-                                      fontSize: 16.0,
-                                      height: 1.5,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 4.0),
-                                child: Visibility(
-                                  visible:
-                                      result.parseLengthAndMaterial(context) !=
-                                          null,
-                                  child: Text(
-                                    result.parseLengthAndMaterial(context) ??
-                                        '',
-                                    style: TextStyle(
-                                      fontSize: 16.0,
-                                      height: 1.5,
-                                      color:
-                                          AppTheme.parseMaterialText(context),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.center,
+          Consumer<ToolExchangeNotifier>(
+              builder: (context, toolExchangeNotifier, child) {
+            if (toolExchangeNotifier.toolChanged) {
+              performSearch();
+              toolExchangeNotifier.resetToolChangedFlag();
+            }
+            return Expanded(
+              child: Consumer<SearchProvider>(
+                  builder: (context, searchProvider, child) {
+                return ListView.builder(
+                  itemCount: searchProvider.searchResults?.length ?? 0,
+                  itemBuilder: (context, index) {
+                    final result = searchProvider.searchResults![index];
+                    String title;
+                    if (result.subtype == 'Glodalo za skidanje srha') {
+                      title =
+                          '${result.subtype} Ø ${result.parseTipdia()} ${result.tiptype}';
+                    } else if (result.tooltype
+                            .toLowerCase()
+                            .startsWith('t-glodalo') &&
+                        result.tslotdp != null) {
+                      title =
+                          '${result.subtype} Ø ${result.parseTipdia()} x ${result.tslotdp}';
+                    } else if (result.tooltype == 'Ureznik') {
+                      title =
+                          '${result.subtype} ${result.parseTipdia()} x ${result.pitch}';
+                    } else {
+                      title =
+                          '${result.subtype} Ø ${result.parseTipdia()}${result.unit == 'mm' ? ' mm' : '"'}';
+                    }
+                    return Card(
+                      elevation: 4.0,
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 4.0, horizontal: 8.0),
+                      child: ExpansionTile(
+                        title: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                ...widget.actionTypes.map((actionType) {
-                                  return _createActionButton(
-                                      actionType, result);
-                                }).toList(),
-                                const SizedBox(width: 50),
-                                SizedBox(
-                                  width: 200,
-                                  child: Text(
-                                    '${parseExternalCabinet(result)}'.isEmpty
-                                        ? ''
-                                        : '${parseExternalCabinet(result)} \n${result.extcab} ${context.localize('new')}',
-                                    style: const TextStyle(
-                                      fontSize: 16.0,
+                                Row(
+                                  children: [
+                                    Text(
+                                      '${result.mfr ?? '${context.localize('unknownmfr')}'} ',
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        height: 1.5,
+                                      ),
+                                    ),
+                                    Text(
+                                      result.invnum,
+                                      style: TextStyle(
+                                        color: AppTheme.invNumText(context),
+                                        height: 1.5,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Text(
+                                  title,
+                                  style: const TextStyle(
+                                    fontSize: 16.0,
+                                    height: 1.5,
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      '${result.cabinet} ',
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        height: 1.5,
+                                        color:
+                                            AppTheme.toolLocationText(context),
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      '(${context.localize('avail')} ${result.avail}, ${context.localize('issued')} ${result.issued})',
+                                      style: const TextStyle(
+                                        fontSize: 16.0,
+                                        height: 1.5,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 4.0),
+                                  child: Visibility(
+                                    visible: result
+                                            .parseLengthAndMaterial(context) !=
+                                        null,
+                                    child: Text(
+                                      result.parseLengthAndMaterial(context) ??
+                                          '',
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        height: 1.5,
+                                        color:
+                                            AppTheme.parseMaterialText(context),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ],
                             ),
-                          )
+                            Expanded(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  ...widget.actionTypes.map((actionType) {
+                                    return _createActionButton(
+                                        actionType, result);
+                                  }).toList(),
+                                  const SizedBox(width: 50),
+                                  SizedBox(
+                                    width: 200,
+                                    child: Text(
+                                      '${parseExternalCabinet(result)}'.isEmpty
+                                          ? ''
+                                          : '${parseExternalCabinet(result)} \n${result.extcab} ${context.localize('new')}',
+                                      style: const TextStyle(
+                                        fontSize: 16.0,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                        children: <Widget>[
+                          Card(
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 4.0, horizontal: 16.0),
+                            elevation: 0,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  flex: 5,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: onExpandedWidgetsLeft(result),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 5,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children:
+                                        onExpandedWidgetsRightDown(result),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
-                      children: <Widget>[
-                        Card(
-                          margin: const EdgeInsets.symmetric(
-                              vertical: 4.0, horizontal: 16.0),
-                          elevation: 0,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                flex: 5,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: onExpandedWidgetsLeft(result),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 5,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: onExpandedWidgetsRightDown(result),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              );
-            }),
-          ),
+                    );
+                  },
+                );
+              }),
+            );
+          }),
         ],
       ),
     );

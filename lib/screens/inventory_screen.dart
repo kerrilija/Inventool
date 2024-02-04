@@ -43,8 +43,8 @@ class _InventoryScreenState extends State<InventoryScreen> {
       "Niagara Cutter": "niagaracab",
     };
 
-    var firstRowTitles = cabinetMap.keys.toList().sublist(0, 5);
-    var secondRowTitles = cabinetMap.keys.toList().sublist(5, 10);
+    var firstRowTitles = cabinetMap.keys.toList().sublist(0, 3);
+    var secondRowTitles = cabinetMap.keys.toList().sublist(3, 6);
     var thirdRowTitles = cabinetMap.keys.toList().sublist(10);
 
     return Scaffold(
