@@ -141,8 +141,8 @@
   "inserttooldialogprompt":"Jeste li sigurni da želite unijeti ovaj alat?",
 
   "importscreentitle":"SQL unos",
-  "importscreencaptionimport":"Priložite CSV fileove for Tool, Fixture i Thread Making tablice.",
-  "importscreencaptionexport":"Izvoz Tool, Fixture and Thread Making tablica u CSV.",
+  "importscreencaptionimport":"Priložite CSV file za Tool tablicu.",
+  "importscreencaptionexport":"Izvoz Tool tablice u CSV.",
 
   "reportEdit":"Uredi",
   "reportInsert":"Unesi",

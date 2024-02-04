@@ -202,7 +202,7 @@ class _ImportScreenState extends State<ImportScreen> {
                 ElevatedButton(
                   onPressed: () => pickAndImportFile(TableType.Tool),
                   child: Text('Tool CSV'),
-                ),
+                ), /*
                 const SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: () => pickAndImportFile(TableType.ThreadMaking),
@@ -212,7 +212,7 @@ class _ImportScreenState extends State<ImportScreen> {
                 ElevatedButton(
                   onPressed: () => pickAndImportFile(TableType.Fixture),
                   child: Text('Fixture CSV'),
-                )
+                )*/
               ],
             ),
             const SizedBox(
@@ -235,7 +235,7 @@ class _ImportScreenState extends State<ImportScreen> {
                     await saveCsvFile(csvData, 'tool_backup');
                   },
                   child: Text('Export Tool'),
-                ),
+                ), /*
                 const SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: () async {
@@ -254,7 +254,7 @@ class _ImportScreenState extends State<ImportScreen> {
                     await saveCsvFile(csvData, 'fixture_backup');
                   },
                   child: Text('Export Fixture'),
-                )
+                )*/
               ],
             )
           ],

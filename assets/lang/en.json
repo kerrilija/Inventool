@@ -141,8 +141,8 @@
     "inserttooldialogprompt":"Are you sure you want to Insert this new tool?",
 
     "importscreentitle":"Import screen",
-    "importscreencaptionimport":"Provide CSV files for Tool, Fixture and Thread Making tables.",
-    "importscreencaptionexport":"Export Tool, Fixture and Thread Making tables to CSV.",
+    "importscreencaptionimport":"Provide CSV file for Tool table.",
+    "importscreencaptionexport":"Export Tool table to CSV.",
 
     "reportEdit":"Edit",
     "reportInsert":"Insert",
