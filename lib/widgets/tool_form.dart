@@ -82,23 +82,13 @@ class _ToolFormState extends State<ToolForm> {
   };
 
   Map<String, String> tooltypeToSourcetable = {
-    "Prihvat": "fixture",
-    "Čahura": "fixture",
-    "Glodalo za navoj": "threadmaking",
-    "T-Glodalo": "tool",
-    "Pločica": "tool",
-    "Alat za štosanje": "tool",
-    "Svrdlo": "tool",
-    "Trkač": "tool",
-    "Uvaljivač": "threadmaking",
-    "Upuštač": "tool",
-    "Glodalo": "tool",
-    "Glava": "tool",
-    "Lastin rep": "tool",
-    "Centar punta": "tool",
-    "Ureznik": "threadmaking",
-    "Pila": "tool",
-    "Trivela": "tool",
+    "Drill": "tool",
+    "End Mill": "tool",
+    "Face Mill": "tool",
+    "Sphere Mill": "tool",
+    "T-Slot Mill": "tool",
+    "Thread Tap": "tool",
+    "Chamfer Mill": "tool"
   };
 
   @override
