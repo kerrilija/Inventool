@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:inventool/utils/colors.dart';
-import 'package:inventool/utils/app_theme.dart';
 
 class NavigationCard extends StatefulWidget {
   final String title;
