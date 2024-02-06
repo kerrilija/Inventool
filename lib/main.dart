@@ -35,13 +35,21 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> _openDatabaseConnection() async {
-    var env = DotEnv(includePlatformEnvironment: true)..load();
+    // var env = DotEnv(includePlatformEnvironment: true)..load();
 
-    String host = env['DB_HOST'] ?? '';
+    // Non-production usage only
+
+    String host = 'localhost';
+    int port = 5432;
+    String dbName = 'tooldb';
+    String username = 'postgres';
+    String password = 'postgres123';
+
+    /*String host = env['DB_HOST'] ?? '';
     int port = int.parse(env['DB_PORT'] ?? '5432');
     String dbName = env['DB_NAME'] ?? '';
     String username = env['DB_USERNAME'] ?? '';
-    String password = env['DB_PASSWORD'] ?? '';
+    String password = env['DB_PASSWORD'] ?? '';*/
 
     connection = PostgreSQLConnection(
       host,

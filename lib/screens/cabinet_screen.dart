@@ -3,7 +3,6 @@ import 'package:postgres/postgres.dart';
 import 'package:inventool/database.dart';
 import 'package:inventool/widgets/inventory_navigation_card.dart';
 import 'cabinet_drawer_screen.dart';
-import 'package:inventool/widgets/drawer_section_dialog.dart';
 import 'package:inventool/locale/locale.dart';
 
 class CabinetScreen extends StatefulWidget {
