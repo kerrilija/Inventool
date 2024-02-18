@@ -50,7 +50,7 @@ NOTE: If you're using Docker, ensure that virtualization is enabled in your BIOS
 
     `cd inventool/docker && docker-compose up`
 
-7. Download [Inventool executable](https://github.com/kerrilija/Inventool/releases/download/v1.0.0/inventool_win_build.zip)
+7. Download [Inventool executable](https://github.com/kerrilija/Inventool/releases/tag/win64_v1.0.0)
 8. Extract the zip and start inventool.exe
 9. When the application starts, in the top menu, click on "Import to SQL".
 10. Click on "Tool CSV".
